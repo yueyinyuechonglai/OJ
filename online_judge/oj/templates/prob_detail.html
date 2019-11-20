@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Problem</title>
+    </head>
+    <body>
+        <div>
+            <!-- title -->
+            <h>{{problem.title}}</h>
+        </div>
+        <div class="">
+            Description
+        </div>
+        <div class="">
+            <!-- statement -->
+            <p>{{problem.description}}</p>
+            
+        </div>
+        <div class="">
+            Input
+        </div>
+        <div class="">
+            <!-- input_format -->
+            <p> {{problem.input_format}} </p>
+           
+        </div>
+        <div class="">
+            Output
+        </div>
+        <div class="">
+            <!-- output_format -->
+            <p>{{problem.output_format}}</p>
+            
+        </div>
+        <div class="">
+            Sample Input
+        </div>
+        <div class="">
+            <!-- samp_input -->
+            <p>{{problem.example_inp}}</p>
+        </div>
+        <div class="">
+            Sample Output
+        </div>
+        <div class="">
+            <!-- samp_output -->
+            <p>{{problem.exmaple_outp}}</p>
+        </div>
+        <div class="">
+            <!-- submit-->
+            <a href="{% url 'submit' %}">
+                submit
+            </a>
+        </div>
+    </body>
+</html>
