@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Problem(models.Model):
@@ -16,3 +17,6 @@ class Problem(models.Model):
 
     def add_problem(self):
         self.save()
+
+class MyUser(User):
+    introduction = models.TextField()
