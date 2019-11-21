@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form action="/oj/sign_in" method="post">
+            {% csrf_token %}
+            <p class="color-gray">Username</p>
+            <input type="text" name="username" id="input">
+            <p class="color-gray">Password</p>
+            <input type="password" name="password" id="input">
+            <input type="text" name="email" value="For hacking the form" style="display: none">
+            <p><input type="submit" class="btn btn-lg btn-success button" value="Sign in."></p>
+        </form>
+        <div class="color-gray" style="font-family: Calibri">
+            Have no account now?
+        </div>
+        <form action="/oj/sign_up/" method="get">
+            <input type="submit" value="Sign up." class="btn btn-lg btn-success button">
+        </form>
+    </body>
+</html>

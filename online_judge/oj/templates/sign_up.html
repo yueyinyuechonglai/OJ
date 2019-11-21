@@ -5,7 +5,7 @@
         <title>Register an account</title>
     </head>
     <body>
-        <form class="" method="post">
+        <form class="" action="/oj/sign_up/" method="post">
             {% csrf_token %}
             <!-- {{ form.as_p }} -->
             <p>Username</p>
@@ -17,7 +17,7 @@
             <input type="submit" name="" value="Sign up">
         </form>
         <p>Already have an account?</p>
-        <form class="" action="/oj" method="get">
+        <form class="" action="/oj/sign_in/" method="get">
             <input type="submit" value="Sign in now" class="sign-in-now">
         </form>
     </body>
