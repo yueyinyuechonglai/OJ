@@ -6,8 +6,36 @@
 </head>
 <body>
     <h1>problems</h1>
+    <div>
+        {% for i in pages %}
+            <div>
+                {% if i == page %}
+                    {{i}}
+                {% else %}
+                    <a href="{% url 'problem_list' page=i %}"> {{i}} </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    
+    </div>
+   
     {% block problem_list %}
        
     {% endblock %}
+
+    <div>
+        {% for i in pages %}
+            <div>
+                {% if i == page %}
+                    {{i}}
+                {% else %}
+                    <a href="{% url 'problem_list' page=i %}"> {{i}} </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    
+    </div>
+    
+
 </body>
 </html>

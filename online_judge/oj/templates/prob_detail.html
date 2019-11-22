@@ -48,10 +48,21 @@
             <p>{{problem.exmaple_outp}}</p>
         </div>
         <div class="">
-            <!-- submit-->
-            <a href="{% url 'submit' %}">
-                submit
-            </a>
-        </div>
+      
+                <form enctype="multipart/form-data" action="/oj/submit/" method="post">
+                    {% csrf_token %}
+                    Language:     
+                    <select>
+                        <option value="C">C(gcc)</option>
+                        <option value="C++">C++(g++)</option>
+                        <!-- waiting to add-->
+                    </select>
+                    <br/>
+                    
+                    <input type="file" name="myfile" />
+                    <input type="submit" value="upload"/>
+                 </form>
+            </div>
+        
     </body>
 </html>

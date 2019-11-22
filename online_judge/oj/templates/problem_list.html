@@ -1,18 +1,7 @@
 {%extends "list_base.html" %}
 
 {% block problem_list %}
-    <div>
-        {% for i in pages %}
-            <div>
-                {% if i == page %}
-                    {{i}}
-                {% else %}
-                    <a href="{% url 'problem_list' page=i %}"> {{i}} </a>
-                {% endif %}
-            </div>
-        {% endfor %}
-
-    </div>
+    
     {% for problem in problems %}
         <div>
             <p>{{ problem.id }}</p>
