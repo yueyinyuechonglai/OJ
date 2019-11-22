@@ -14,3 +14,9 @@ class UserForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField()
     email = forms.CharField()
+
+class SubmitForm(forms.Form):
+    username = forms.CharField()
+    prob_id = forms.IntegerField()
+    code = forms.TextField()
+    lang = forms.TextField()

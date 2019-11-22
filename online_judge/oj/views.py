@@ -28,11 +28,18 @@ def prob_detail(request,prob_id):
 
 def submit(request,prob_id):
     #判断是否登录,若登录则跳到status页面,否则登录页面
-    
-    return render(request,'status.html',{'prob_id': prob_id})
-
-def index(request):
-    return render(request, 'index.html')
+    if request.method == "POST":
+        form = SubmitForm(request.POST)
+        if form.is_valid():
+            if request.user.authenticated:
+                # check, compile and run code and compare the answer and output
+                return render(request,'status.html')
+            else:
+                return sign_in(request, True)
+        else:
+            return render(request, 'submit.html')
+    else:
+        return render(request, 'submit.html')
 
 def sign_up(request):
     if request.method == "POST":
@@ -49,7 +56,7 @@ def sign_up(request):
                 user.save()
     return render(request, 'sign_up.html')
 
-def sign_in(request):
+def sign_in(request, is_submitting=False):
     def form_vaild():
         user = authenticate(\
             username=form.cleaned_data["username"],\
@@ -60,7 +67,10 @@ def sign_in(request):
                 login(request, user)
             isUserExist = True
         if isUserExist:
-            return problem_list(request, 1)
+            if is_submitting:
+                return redirect(request.path)
+            else:
+                return problem_list(request, 1)
         else:
             error = {"msg": "The name or password is incorrect."}
             return render(request, 'sign_in.html', error)
@@ -70,6 +80,7 @@ def sign_in(request):
         inputedData["name"] = request.POST.get("name", "")
         inputedData["password"] = request.POST.get("password", "")
         return render(request, 'memories/sign_in.html', {'input': inputedData})
+
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
@@ -77,6 +88,8 @@ def sign_in(request):
         else:
             return form_not_vaild()
     else:
+        if is_submitting:
+            return render(request, 'sign_in.html')
         backToLogin = True
         if request.user.is_authenticated:
             if request.GET.get("_logout", "") == "log out":
