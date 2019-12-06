@@ -25,6 +25,12 @@ class Submission(models.Model):
     submit_count = 0
     subm_id = models.IntegerField(default=0)
     prob_id = models.IntegerField(default=0)
-    time = models.DateTimeField('add_time',auto_now_add = True)
+    sub_time = models.DateTimeField('add_time',auto_now_add = True)
+    exe_time = models.IntegerField()
     value = models.TextField()
     user = models.CharField(max_length=20)
+    language =  models.TextField()
+
+    
+    
+    
