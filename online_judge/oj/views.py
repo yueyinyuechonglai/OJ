@@ -7,7 +7,7 @@ from .models import *
 from .forms import *
 # Create your views here.
 
-def problem_list(request,page):
+def problem_list(request, page):
     PAGENUM = 1
     start = (page-1) * PAGENUM
     stop = page * PAGENUM
@@ -27,7 +27,7 @@ def prob_detail(request, prob_id):
     problem = Problem.objects.get(prob_id = prob_id)
     return render(request, 'prob_detail.html', {'problem': problem})
 
-def submit(request,prob_id):
+def submit(request, prob_id):
     #判断是否登录,若登录则跳到status页面,否则登录页面
     if request.method == "POST":
         form = SubmitForm(request.POST, request.FILES)
