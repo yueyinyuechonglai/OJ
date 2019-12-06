@@ -8,6 +8,9 @@ from .forms import *
 from django.db.models import Sum, Count
 # Create your views here.
 
+def index(request):
+    return render(request, 'index.html')
+
 def problem_list(request,page):
     PAGENUM = 1
     start = (page-1) * PAGENUM
@@ -32,9 +35,10 @@ def prob_detail(request, prob_id):
     problem = Problem.objects.get(prob_id = prob_id)
     return render(request, 'prob_detail.html', {'problem': problem})
 
+
 def submit(request,prob_id):
      #判断是否登录,若登录则跳到status页面,否则登录页面
-     if request.method == "POST":
+    if request.method == "POST":
         form = SubmitForm(request.POST, request.FILES)
         if form.is_valid():
             if request.user.is_authenticated:
@@ -53,8 +57,9 @@ def submit(request,prob_id):
                     prob_id = prob_id,
                     value = myFile.read(),
                     user = request.user.username,
+                    exe_time = 0
                 )
-                return render(request,'status.html')
+                return status(request,1)
             else:
                 return sign_in(request, True)
         else:
