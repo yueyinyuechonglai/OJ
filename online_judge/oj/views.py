@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Problem, MyUser
+from .models import Problem, MyUser,Submission
 from .forms import UserForm
+from django.db.models import Sum, Count
 # Create your views here.
 
 def problem_list(request,page):
@@ -11,11 +12,15 @@ def problem_list(request,page):
     start = (page-1) * PAGENUM
     stop = page * PAGENUM
 
+    pro_count = Problem.objects.count()
+    
+    if stop > pro_count:
+        stop = pro_count
     myslice = slice(start,stop,1)
     problems = Problem.objects.order_by('prob_id')
-    npage = (len(problems)-1) // PAGENUM + 1
+    last_page = (pro_count-1) // PAGENUM + 1
     pages = []
-    for i in range(1,npage+1):
+    for i in range(1,last_page+1):
         pages.append(i)
 
     problems = problems[myslice]
@@ -30,6 +35,24 @@ def submit(request,prob_id):
     #判断是否登录,若登录则跳到status页面,否则登录页面
     
     return render(request,'status.html',{'prob_id': prob_id})
+
+def status(request,page):
+    PAGENUM = 1
+    start = (page-1) * PAGENUM
+    stop = page * PAGENUM
+
+    sub_count = Submission.objects.count()
+    last_page = (sub_count-1) // PAGENUM + 1
+
+    if stop > sub_count:
+        stop = sub_count
+
+    myslice = slice(start,stop,1)
+    submissions = Submission.objects.order_by('-subm_id')
+
+    submissions = submissions[myslice]
+
+    return render(request,'status.html',{'submissions': submissions,'page' : page,'last_page' : last_page, 'pre_page' : page-1 , 'next_page' : page+1})
 
 def index(request):
     return render(request, 'index.html')
