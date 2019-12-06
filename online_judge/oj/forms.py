@@ -16,7 +16,7 @@ class UserForm(forms.Form):
     email = forms.CharField()
 
 class SubmitForm(forms.Form):
-    username = forms.CharField()
-    prob_id = forms.IntegerField()
-    code = forms.TextField()
-    lang = forms.TextField()
+    lang = forms.CharField()
+    # username = forms.CharField()
+    # prob_id = forms.IntegerField()
+    code = forms.FileField()

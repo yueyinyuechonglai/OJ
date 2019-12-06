@@ -1,9 +1,10 @@
+import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Problem, MyUser
-from .forms import UserForm
+from .models import *
+from .forms import *
 # Create your views here.
 
 def problem_list(request,page):
@@ -22,24 +23,41 @@ def problem_list(request,page):
 
     return render(request, 'problem_list.html', {'problems': problems,'page' : page,'pages' : pages})
 
-def prob_detail(request,prob_id):
+def prob_detail(request, prob_id):
     problem = Problem.objects.get(prob_id = prob_id)
     return render(request, 'prob_detail.html', {'problem': problem})
 
 def submit(request,prob_id):
     #判断是否登录,若登录则跳到status页面,否则登录页面
     if request.method == "POST":
-        form = SubmitForm(request.POST)
+        form = SubmitForm(request.POST, request.FILES)
         if form.is_valid():
-            if request.user.authenticated:
+            if request.user.is_authenticated:
                 # check, compile and run code and compare the answer and output
+                myFile =request.FILES.get("code", None)
+                if not myFile:
+                    return HttpResponse("no files for upload!")
+                Submission.submit_count += 1
+                myFile.name = str(Submission.submit_count)
+                destination = open(os.path.join(".", "oj", "submitted_code", myFile.name), 'wb+')
+                for chunk in myFile.chunks():
+                    destination.write(chunk)
+                destination.close()
+                submission = Submission.objects.create(
+                    subm_id = Submission.submit_count,
+                    prob_id = prob_id,
+                    value = myFile.read(),
+                    user = request.user.username,
+                )
                 return render(request,'status.html')
             else:
                 return sign_in(request, True)
         else:
-            return render(request, 'submit.html')
+            print(form.cleaned_data)
+            print(form.errors)
+            return render(request, '404.html')
     else:
-        return render(request, 'submit.html')
+        return render(request, '404.html')
 
 def sign_up(request):
     if request.method == "POST":
