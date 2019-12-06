@@ -147,3 +147,6 @@ def sign_in(request, is_submitting=False):
 def log_out(request):
     logout(request)
     return render(request, 'index.html')
+
+def index(request):
+    return render(request, 'index.html')

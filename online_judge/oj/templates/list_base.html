@@ -5,6 +5,12 @@
 <title>problem list</title>
 </head>
 <body>
+    <div>
+        <h1><a href="/oj/">Home page</a></h1>
+    </div>
+    {% if request.user.is_authenticated %}
+        <h1><a href="/oj/logout/">log out</a></h1>
+    {% endif %}    
     <h1>problems</h1>
     <div>
         {% for i in pages %}

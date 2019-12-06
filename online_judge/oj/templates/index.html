@@ -2,9 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Problem</title>
+        <title>online judge</title>
     </head>
     <body>
-       
+        <div class="color-gray" style="font-family: Calibri">
+            Welcome to online judge!
+        </div>
+        <div>
+            <h1><a href="/oj/problems/p1/">problem list</a></h1>
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <div>
+                <h1><a href="/oj/logout/">Log out</a></h1>
+            </div>
+            {% else %}
+            <div>
+                <p class="color-gray" style="font-family: Calibri"> Sign in to submit your answer and get the feedback.</p>
+                <h1><a href="/oj/sign_in/">Sign in</a></h1>
+            </div>
+        {% endif %}
+
+        <div>
+            <p class="color-gray" style="font-family: Calibri"> Have no account now?</p>
+            <h1><a href="/oj/sign_up/">Sign up</a></h1>
+        </div>
     </body>
 </html>
