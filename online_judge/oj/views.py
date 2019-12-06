@@ -71,7 +71,7 @@ def sign_up(request):
                     username = form.cleaned_data['username'],\
                     email = form.cleaned_data['email'],\
                     password = form.cleaned_data['password'],)
-                user.save()
+                # user.save()
     return render(request, 'sign_up.html')
 
 def sign_in(request, is_submitting=False):
@@ -97,7 +97,7 @@ def sign_in(request, is_submitting=False):
         inputedData = {}
         inputedData["name"] = request.POST.get("name", "")
         inputedData["password"] = request.POST.get("password", "")
-        return render(request, 'memories/sign_in.html', {'input': inputedData})
+        return render(request, 'sign_in.html', {'input': inputedData})
 
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -118,3 +118,7 @@ def sign_in(request, is_submitting=False):
             return render(request, 'sign_in.html')
         else:
             return problem_list(request, 1)
+
+def log_out(request):
+    logout(request)
+    return render(request, 'index.html')
