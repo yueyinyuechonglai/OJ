@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .forms import *
+from django.db.models import Sum, Count
 # Create your views here.
 
 def problem_list(request, page):
@@ -12,11 +13,15 @@ def problem_list(request, page):
     start = (page-1) * PAGENUM
     stop = page * PAGENUM
 
+    pro_count = Problem.objects.count()
+
+    if stop > pro_count:
+        stop = pro_count
     myslice = slice(start,stop,1)
     problems = Problem.objects.order_by('prob_id')
-    npage = (len(problems)-1) // PAGENUM + 1
+    last_page = (pro_count-1) // PAGENUM + 1
     pages = []
-    for i in range(1,npage+1):
+    for i in range(1,last_page+1):
         pages.append(i)
 
     problems = problems[myslice]
@@ -48,8 +53,9 @@ def submit(request, prob_id):
                     prob_id = prob_id,
                     value = myFile.read(),
                     user = request.user.username,
+                    exe_time = 0
                 )
-                return render(request,'status.html')
+                return status(request,1)
             else:
                 return sign_in(request, True)
         else:
@@ -58,6 +64,25 @@ def submit(request, prob_id):
             return render(request, '404.html')
     else:
         return render(request, '404.html')
+
+def status(request,page):
+    PAGENUM = 1
+    start = (page-1) * PAGENUM
+    stop = page * PAGENUM
+
+    sub_count = Submission.objects.count()
+    last_page = (sub_count-1) // PAGENUM + 1
+
+    if stop > sub_count:
+        stop = sub_count
+
+    myslice = slice(start,stop,1)
+    submissions = Submission.objects.order_by('-subm_id')
+
+    submissions = submissions[myslice]
+
+    return render(request,'status.html',{'submissions': submissions,'page' : page,'last_page' : last_page, 'pre_page' : page-1 , 'next_page' : page+1})
+
 
 def sign_up(request):
     if request.method == "POST":
