@@ -1,79 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
     <head>
-        <style type="text/css">
-
-            h1 {
-                font-size: 20px;
-            }
-            .button {
-                 background-color: #4CAF50;
-                border: none;
-                color: white;
-                padding: 5px 10px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-            }
-    
-            input[type=text] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #555;
-            outline: none;
-            }
-    
-            input[type=text]:focus {
-            background-color: lightblue;
-            }
-    
-            input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #555;
-            outline: none;
-            }
-    
-            input[type=password]:focus {
-            background-color: lightblue;
-            }
-    
-            /* 底部样式 */
-            .footer {
-            background-color: #f1f1f1;
-            padding: 10px;
-            text-align: center;
-            }
-    
-            </style>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
         <title>Register an account</title>
+    
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    
+        <!-- Custom styles for this template -->
+        <link href="signin.css" rel="stylesheet">
+    
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
     </head>
     <body>
-        <div>
-            <h1 class = "button"><a href="/oj/">Home page</a></h1>
-        </div>
-        <form class="footer" action="/oj/sign_up/" method="post">
-            {% csrf_token %}
-            <!-- {{ form.as_p }} -->
-            <p>Username</p>
-            <input type="text" name="username" value="">
-            <p>Email</p>
-            <input type="text" name="email" placeholder="You@example.com">
-            <p>Password</p>
-            <input type="text" name="password" value="">
-            <input type="submit" name="" value="Sign up">
-        </form>
-        <form class="footer" action="/oj/" method="get">
-            <p>Already have an account?</p>
-            <input type="submit" value="Sign in now" class="sign-in-now">
-        </form>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/oj/">Online Judge</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    
+        <div class="container">
+            <form class="footer" action="/oj/sign_up/" method="post">
+                {% csrf_token %}
+                <!-- {{ form.as_p }} -->
+                <p><label for="username">User Name</label></p>
+                <p><input type="text" name="username" value=""></p>
+                <p><label for="Email">Email</label></p>
+                <p><input type="text" name="email" placeholder="You@example.com"></p>
+                <p><label for="password">Pass Word </label></p>
+                <p><input type="text" name="password" value=""></p>
+                <p><input type="submit" name="" value="Sign up" class="btn btn-primary"></p>
+            </form>
+            <form class="footer" action="/oj/sign_in/" method="get">
+                <p>Already have an account?</p>
+                <input type="submit" value="Sign in now" class="btn btn-lg btn-primary btn-block">
+            </form>
+        </div><!-- /container -->
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <style>
             body {
               margin: 0;
@@ -30,15 +34,28 @@
         <title>Status</title>
     </head>
     <body>
-        <div>
-            <h1 class ="button"><a href="/oj/">Home page</a></h1>
-        </div>
-        {% if page != 1 %}
-            <a class="button" href="{% url 'status' page=pre_page %}"> 上一页 </a>
-        {% endif %}
-        {% if page != last_page %}
-            <a  class="button" href="{% url 'status' page=next_page %}"> 下一页 </a>
-        {% endif %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/oj/">Online Judge</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/oj/problems/p1/">Problems List <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                {% if page != 1 %}
+                <a href="{% url 'status' page=pre_page %}" class="btn btn-outline-success my-2 my-sm-0"> 上一页 <span class="sr-only">(current)</span></a>
+                {% endif %}
+                {% if page != last_page %}
+                <a href="{% url 'status' page=next_page %}" class="btn btn-outline-success my-2 my-sm-0"> 下一页 <span class="sr-only">(current)</span></a>
+                {% endif %}
+              </form>
+            </div>
+          </nav>
         <table>
             <tr>
                 <th>

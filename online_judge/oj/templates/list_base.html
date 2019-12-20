@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
 <title>problem list</title>
 <style>
     ul.pagination {
@@ -48,13 +52,29 @@
 
 
 <body>
-    <div class = "button">
-        <h1><a href="/oj/">Home page</a></h1>
-    </div>
-    {% if request.user.is_authenticated %}
-        <h1><a href="/oj/logout/">log out</a></h1>
-    {% endif %}    
-    <h1>problems</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/oj/">Online Judge</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/oj/problems/p1/">Problems List <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            {% if request.user.is_authenticated %}
+            <a href="/oj/logout/" class="btn btn-outline-success my-2 my-sm-0">Log out<span class="sr-only">(current)</span></a>
+            {% else %}
+            <a href="/oj/sign_in/" class="btn btn-outline-success my-2 my-sm-0">Sign in<span class="sr-only">(current)</span></a>
+            {% endif %}
+            <a href="/oj/sign_up/" class="btn btn-outline-success my-2 my-sm-0">Sign up<span class="sr-only">(current)</span></a>
+          </form>
+        </div>
+      </nav>
+    <!--h1>problems</!--h1>
     <div class="center">
         <ul class="pagination">
             {% for i in pages %}
@@ -64,7 +84,7 @@
             {% endfor %}
         
         </ul>
-    </div>
+    </div-->
     {% block problem_list %}
        
     {% endblock %}

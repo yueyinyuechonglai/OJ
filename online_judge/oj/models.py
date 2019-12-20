@@ -29,5 +29,5 @@ class Submission(models.Model):
     exe_time = models.IntegerField()
     value = models.TextField()
     user = models.CharField(max_length=20)
-    language =  models.TextField()
+    language =  models.CharField(max_length=10)
     status = models.CharField(max_length=20)
