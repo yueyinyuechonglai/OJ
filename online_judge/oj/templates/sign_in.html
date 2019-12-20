@@ -1,26 +1,82 @@
 <!DOCTYPE html>
 <html>
     <head>
+
+        <style type="text/css">
+
+        h1 {
+            font-size: 20px;
+        }
+        .button {
+             background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        outline: none;
+        }
+
+        input[type=text]:focus {
+        background-color: lightblue;
+        }
+
+        input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        outline: none;
+        }
+
+        input[type=password]:focus {
+        background-color: lightblue;
+        }
+
+        /* 底部样式 */
+        .footer {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-align: center;
+        }
+
+        </style>
         <meta charset="utf-8">
-        <title></title>
+        <title>Sign in</title>
     </head>
     <body>
         <div>
-            <h1><a href="/oj/">Home page</a></h1>
+            <h1 class = "button" ><a href="/oj/">Home page</a></h1>
         </div>
-        <form action="/oj/sign_in/" method="post">
+
+        <form  class ="footer" action="/oj/sign_in/" method="post">
             {% csrf_token %}
-            <p class="color-gray">Username</p>
-            <input type="text" name="username" id="input">
-            <p class="color-gray">Password</p>
-            <input type="password" name="password" id="input">
-            <input type="text" name="email" value="For hacking the form" style="display: none">
+            <label for="username">User Name</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Pass Word</label>
+            <input type="password" name="password" id="password">
+
+
+            <input type="text" name="email" value="For hacking the form" id="email" style="display: none">
             <p><input type="submit" class="btn btn-lg btn-success button" value="Sign in."></p>
         </form>
-        <div class="color-gray" style="font-family: Calibri">
+        <div class="color-gray footer" style="font-family: Calibri">
             Have no account now?
         </div>
-        <form action="/oj/sign_up/" method="get">
+        <form class = "float footer" action="/oj/sign_up/" method="get">
             <input type="submit" value="Sign up." class="btn btn-lg btn-success button">
         </form>
     </body>

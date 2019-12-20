@@ -1,31 +1,106 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style type="text/css">
+        body {background-color: rgb(250, 253, 252)}
+
+        .float
+        {
+            float:right;
+            width:100px;
+            height:10px;
+            margin:5px;
+        }
+
+        .button {
+             background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        h1 {
+            text-shadow: 5px 5px 5px rgb(28, 79, 221);
+        }
+        #wel{
+            text-align: center;
+            font-size:88px;
+
+        }
+
+        * {
+        box-sizing: border-box;
+        }
+
+        body {
+        margin: 0;
+        }
+
+        /* 头部样式 */
+        .header {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+        }
+
+        /* 导航条 */
+        .topnav {
+        overflow: hidden;
+        background-color: #333;
+        }
+        
+        /* 导航链接 */
+        .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+        
+        /* 链接 - 修改颜色 */
+        .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+        }
+
+
+        </style>
         <meta charset="utf-8">
         <title>online judge</title>
     </head>
-    <body>
-        <div class="color-gray" style="font-family: Calibri">
+
+    <body >
+        {% if request.user.is_authenticated %}
+            <div>
+                <h1><a href="/oj/logout/" class="button">Log out</a></h1>
+            </div>
+            {% else %}
+            <div class="float">
+                
+                <h1><a href="/oj/sign_in/" class="button">Sign in</a></h1>
+            </div>
+        {% endif %}
+        <div class="float">
+            
+            <h1><a href="/oj/sign_up/" class="button">Sign up</a></h1>
+        </div>
+
+        <div id='wel' class="color-gray header"  style="font-family: Calibri">
             Welcome to online judge!
         </div>
         <div>
-            <h1><a href="/oj/problems/p1/">problem list</a></h1>
+            <h1><a href="/oj/problems/p1/" class="button">problem list</a></h1>
         </div>
 
-        {% if request.user.is_authenticated %}
-            <div>
-                <h1><a href="/oj/logout/">Log out</a></h1>
-            </div>
-            {% else %}
-            <div>
-                <p class="color-gray" style="font-family: Calibri"> Sign in to submit your answer and get the feedback.</p>
-                <h1><a href="/oj/sign_in/">Sign in</a></h1>
-            </div>
-        {% endif %}
+        
 
-        <div>
-            <p class="color-gray" style="font-family: Calibri"> Have no account now?</p>
-            <h1><a href="/oj/sign_up/">Sign up</a></h1>
-        </div>
+        
     </body>
 </html>

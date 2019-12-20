@@ -30,7 +30,4 @@ class Submission(models.Model):
     value = models.TextField()
     user = models.CharField(max_length=20)
     language =  models.TextField()
-
-    
-    
-    
+    status = models.CharField(max_length=20)

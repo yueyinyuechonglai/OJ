@@ -1,14 +1,66 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style type="text/css">
+
+            h1 {
+                font-size: 20px;
+            }
+            .button {
+                 background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+    
+            input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            outline: none;
+            }
+    
+            input[type=text]:focus {
+            background-color: lightblue;
+            }
+    
+            input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            outline: none;
+            }
+    
+            input[type=password]:focus {
+            background-color: lightblue;
+            }
+    
+            /* 底部样式 */
+            .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            }
+    
+            </style>
         <meta charset="utf-8">
         <title>Register an account</title>
     </head>
     <body>
         <div>
-            <h1><a href="/oj/">Home page</a></h1>
+            <h1 class = "button"><a href="/oj/">Home page</a></h1>
         </div>
-        <form class="" action="/oj/sign_up/" method="post">
+        <form class="footer" action="/oj/sign_up/" method="post">
             {% csrf_token %}
             <!-- {{ form.as_p }} -->
             <p>Username</p>
@@ -19,8 +71,8 @@
             <input type="text" name="password" value="">
             <input type="submit" name="" value="Sign up">
         </form>
-        <p>Already have an account?</p>
-        <form class="" action="/oj/" method="get">
+        <form class="footer" action="/oj/" method="get">
+            <p>Already have an account?</p>
             <input type="submit" value="Sign in now" class="sign-in-now">
         </form>
     </body>

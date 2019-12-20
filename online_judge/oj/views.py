@@ -44,10 +44,24 @@ def submit(request, prob_id):
                     return HttpResponse("no files for upload!")
                 Submission.submit_count += 1
                 myFile.name = str(Submission.submit_count)
-                destination = open(os.path.join(".", "oj", "submitted_code", myFile.name), 'wb+')
+                file_path = os.path.join(".", "oj", "submitted_code", myFile.name)
+                destination = open(file_path, 'wb+')
                 for chunk in myFile.chunks():
                     destination.write(chunk)
                 destination.close()
+
+                # submit_status = ""
+                # if form.cleaned_data['lang'] == 'C':
+                #     os.system("gcc " + file_path + "-o2 > compile_info")
+                #     compile_info = open('compile_info', r).read()
+                #     if (compile_info.find('error:')):
+                #         submit_status = 'compile error'
+                #     else:
+                #
+                #
+                # elif form.cleaned_data['lang'] == 'C++':
+                #     os.system("g++ " + file_path + "-o2 -std=c++11; a")
+
                 submission = Submission.objects.create(
                     subm_id = Submission.submit_count,
                     prob_id = prob_id,

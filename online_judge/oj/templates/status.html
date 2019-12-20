@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            body {
+              margin: 0;
+            }
+            
+            /* 头部样式 */
+            .header {
+              background-color: #f1f1f1;
+              padding: 20px;
+              text-align: center;
+            }
+
+            .button {
+                 background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            </style>
         <meta charset="utf-8">
         <title>Status</title>
     </head>
     <body>
+        <div>
+            <h1 class ="button"><a href="/oj/">Home page</a></h1>
+        </div>
         {% if page != 1 %}
-            <a href="{% url 'status' page=pre_page %}"> 上一页 </a>
+            <a class="button" href="{% url 'status' page=pre_page %}"> 上一页 </a>
         {% endif %}
         {% if page != last_page %}
-            <a href="{% url 'status' page=next_page %}"> 下一页 </a>
+            <a  class="button" href="{% url 'status' page=next_page %}"> 下一页 </a>
         {% endif %}
         <table>
             <tr>
