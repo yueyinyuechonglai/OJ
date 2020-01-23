@@ -1,31 +1,115 @@
+
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <style type="text/css">
+        body {background-color: rgb(250, 253, 252)
+            background-image:url(002.gif);}
+
+        .float
+        {
+            float:right;
+            width:100px;
+            height:10px;
+            margin:5px;
+        }
+
+        .button {
+             background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        h1 {
+            text-shadow: 5px 5px 5px rgb(28, 79, 221);
+        }
+        #wel{
+            text-align: center;
+            font-size:88px;
+
+        }
+
+        * {
+        box-sizing: border-box;
+        }
+
+        body {
+        margin: 0;
+        }
+
+        /* 头部样式 */
+        .header {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+        }
+
+        /* 导航条 */
+        .topnav {
+        overflow: hidden;
+        background-color: #333;
+        }
+        
+        /* 导航链接 */
+        .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+        
+        /* 链接 - 修改颜色 */
+        .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+        }
+
+
+        </style>
         <meta charset="utf-8">
         <title>online judge</title>
     </head>
+
     <body>
-        <div class="color-gray" style="font-family: Calibri">
-            Welcome to online judge!
-        </div>    
-        <div>
-            <h1><a href="/oj/problems/p1/">problem list</a></h1>
-        </div>
-
-        {% if request.user.is_authenticated %}
-            <div>
-                <h1><a href="/oj/logout/">Log out</a></h1>    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/oj/">Online Judge</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/oj/problems/p1/">Problems List <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                {% if request.user.is_authenticated %}
+                <a href="/oj/logout/" class="btn btn-outline-success my-2 my-sm-0">Log out<span class="sr-only">(current)</span></a>
+                {% else %}
+                <a href="/oj/sign_in/" class="btn btn-outline-success my-2 my-sm-0">Sign in<span class="sr-only">(current)</span></a>
+                {% endif %}
+                <a href="/oj/sign_up/" class="btn btn-outline-success my-2 my-sm-0">Sign up<span class="sr-only">(current)</span></a>
+              </form>
             </div>
-            {% else %}
-            <div>
-                <p class="color-gray" style="font-family: Calibri"> Sign in to submit your answer and get the feedback.</p>
-                <h1><a href="/oj/sign_in/">Sign in</a></h1>
-            </div>
-        {% endif %}
+          </nav>
+        
 
-        <div>
-            <p class="color-gray" style="font-family: Calibri"> Have no account now?</p>
-            <h1><a href="/oj/sign_up/">Sign up</a></h1>
+        <div id='wel' class="color-gray header"  style="font-family: Calibri">
+            Welcome to our online judge!
         </div>
+    
     </body>
 </html>
